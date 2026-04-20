@@ -252,7 +252,7 @@ export interface AdminUiConfig {
      *
      * @default 'cookie'
      */
-    tokenMethod: 'cookie' | 'bearer';
+    tokenMethod: 'cookie' | 'bearer' | ReadonlyArray<'cookie' | 'bearer'>;
     /**
      * @description
      * The header used when using the 'bearer' auth method. Should match the
