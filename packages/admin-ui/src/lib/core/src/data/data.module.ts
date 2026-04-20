@@ -67,7 +67,7 @@ export function createApollo(): ApolloClientOptions<any> {
                 if (channelToken) {
                     headers[channelTokenKey ?? 'vendure-token'] = channelToken;
                 }
-                if (tokenMethod === 'bearer') {
+                if (tokenMethod === 'bearer' || (Array.isArray(tokenMethod) && tokenMethod.includes('bearer'))) {
                     const authToken = localStorageService.get('authToken');
                     if (authToken) {
                         headers.authorization = `Bearer ${authToken}`;

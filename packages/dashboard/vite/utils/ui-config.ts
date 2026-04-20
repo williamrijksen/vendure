@@ -25,7 +25,11 @@ export function getUiConfig(
         host: pluginOptions.api?.host ?? 'auto',
         port: pluginOptions.api?.port ?? 'auto',
         tokenMethod:
-            pluginOptions.api?.tokenMethod ?? (authOptions.tokenMethod === 'bearer' ? 'bearer' : 'cookie'),
+            pluginOptions.api?.tokenMethod ??
+            (authOptions.tokenMethod === 'bearer' ||
+            (Array.isArray(authOptions.tokenMethod) && authOptions.tokenMethod.includes('bearer'))
+                ? 'bearer'
+                : 'cookie'),
         authTokenHeaderKey:
             pluginOptions.api?.authTokenHeaderKey ??
             authOptions.authTokenHeaderKey ??

@@ -146,7 +146,7 @@ export class DefaultInterceptor implements HttpInterceptor {
      * for the existence of an auth token.
      */
     private checkForAuthToken(response: HttpResponse<any>) {
-        if (this.tokenMethod === 'bearer') {
+        if (this.tokenMethod === 'bearer' || (Array.isArray(this.tokenMethod) && this.tokenMethod.includes('bearer'))) {
             const authToken = response.headers.get(this.authTokenHeaderKey);
             if (authToken) {
                 this.localStorageService.set('authToken', authToken);
